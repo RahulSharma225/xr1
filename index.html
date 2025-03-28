@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Tour of Brunelleschi's Dome</title>
+    <!-- A-Frame Library -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- 3D Dome Model -->
+      <a-entity
+        gltf-model="https://sketchfab.com/3d-models/santa-maria-del-fiore-cathedral-florence-382fa42bca4346979e673c12e93a2df8"
+        scale="5 5 5"
+        position="0 1 -5"
+      ></a-entity>
+
+      <!-- Virtual Guide Audio -->
+      <a-sound
+        src="url(guide-audio.mp3)"
+        autoplay="true"
+        loop="false"
+        position="0 1 0"
+      ></a-sound>
+
+      <!-- Interactive Point for Dome Construction Info -->
+      <a-box
+        position="1 2 -3"
+        color="red"
+        scale="0.1 0.1 0.1"
+        class="clickable"
+        onclick="showInfo()"
+      ></a-box>
+
+      <!-- Information Text -->
+      <a-text
+        id="info"
+        value="Click the red box for dome details!"
+        position="0 3 -5"
+        color="black"
+        scale="3 3 3"
+      ></a-text>
+
+      <!-- Camera for Viewing -->
+      <a-camera position="0 1.6 0"></a-camera>
+
+      <!-- JavaScript to handle click and show information -->
+      <script>
+        function showInfo() {
+          document
+            .getElementById("info")
+            .setAttribute("value", "Dome construction started in 1420!");
+        }
+      </script>
+    </a-scene>
+  </body>
+</html>
