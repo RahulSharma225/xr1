@@ -9,48 +9,61 @@
   </head>
   <body>
     <a-scene>
-      <!-- 3D Dome Model -->
-      <a-entity
-        gltf-model="url(scene.glb)"
-        scale="5 5 5"
-        position="0 1 -5"
-      ></a-entity>
+      <!-- Lighting -->
+      <a-light type="ambient" intensity="0.8"></a-light>
+      <a-light type="directional" position="2 4 2" intensity="1"></a-light>
 
-      <!-- Virtual Guide Audio -->
+      <!-- 3D Model of Brunelleschi's Dome -->
+      <a-entity
+        gltf-model="scene.glb"
+        scale="5 5 5"
+        position="0 0 -5"
+        rotation="0 180 0"
+      >
+      </a-entity>
+
+      <!-- Virtual Guide Audio (Optional) -->
       <a-sound
-        src="url(guide-audio.mp3)"
+        src="guide-audio.mp3"
         autoplay="true"
         loop="false"
         position="0 1 0"
       ></a-sound>
 
-      <!-- Interactive Point for Dome Construction Info -->
+      <!-- Interactive Info Point (Click to Learn More) -->
       <a-box
-        position="1 2 -3"
+        position="0 2 -3"
         color="red"
-        scale="0.1 0.1 0.1"
+        scale="0.2 0.2 0.2"
         class="clickable"
         onclick="showInfo()"
-      ></a-box>
+      >
+      </a-box>
 
-      <!-- Information Text -->
+      <!-- Information Text (Updates on Click) -->
       <a-text
         id="info"
-        value="Click the red box for dome details!"
-        position="0 3 -5"
+        value="Click the red box to learn about the dome!"
+        position="-1 3 -5"
         color="black"
-        scale="3 3 3"
-      ></a-text>
+        scale="2 2 2"
+      >
+      </a-text>
 
-      <!-- Camera for Viewing -->
-      <a-camera position="0 1.6 0"></a-camera>
+      <!-- Camera for Navigation -->
+      <a-camera position="0 1.6 0">
+        <a-cursor color="black"></a-cursor>
+      </a-camera>
 
-      <!-- JavaScript to handle click and show information -->
+      <!-- JavaScript for Interaction -->
       <script>
         function showInfo() {
           document
             .getElementById("info")
-            .setAttribute("value", "Dome construction started in 1420!");
+            .setAttribute(
+              "value",
+              "Brunelleschi’s Dome was completed in 1436!"
+            );
         }
       </script>
     </a-scene>
